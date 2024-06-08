@@ -10,13 +10,13 @@ type MultiPurposeModalPropsType = {
   set: (modalProps: MultiPurposeModalProps) => void;
 };
 
-export const defaultModalProp: MultiPurposeModalProps = {
+export const defaultModalProps: MultiPurposeModalProps = {
   isOpen: false,
   children: <></>,
 };
 
 const ModalPropsContext = createContext<MultiPurposeModalPropsType>({
-  modalProps: defaultModalProp,
+  modalProps: defaultModalProps,
   set: () => {},
 });
 
@@ -26,7 +26,7 @@ export const useModalProps = () => {
 
 export const ModalPropsProvider = (props: { children: React.ReactElement }) => {
   const [modalProps, setModalProps] =
-    useState<MultiPurposeModalProps>(defaultModalProp);
+    useState<MultiPurposeModalProps>(defaultModalProps);
 
   return (
     <ModalPropsContext.Provider value={{ modalProps, set: setModalProps }}>

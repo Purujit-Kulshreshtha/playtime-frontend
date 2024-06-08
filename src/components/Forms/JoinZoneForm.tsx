@@ -1,15 +1,30 @@
 import { useState } from "react";
 import { VscGitPullRequestCreate } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../contants";
+import {
+  defaultModalProps,
+  useModalProps,
+} from "../../context/ModalPropsProvider";
 
 const JoinZoneForm = () => {
   const [zoneName, setZoneName] = useState("");
+  const navigate = useNavigate();
+  const { set } = useModalProps();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    set(defaultModalProps);
+    navigate(ROUTES.getTimezoneRoute(zoneName));
+  };
+
   return (
     <div className="flex flex-col justify-between items-center py-5">
       <h1 className="text-6xl font-extrabold flex flex-col  justify-center items-center gap-4 md:gap-8 text-center">
         <VscGitPullRequestCreate />
         Join Zone
       </h1>
-      <form className="flex flex-col gap-6 mt-16 mb-8">
+      <form className="flex flex-col gap-6 mt-16 mb-8" onSubmit={handleSubmit}>
         <input
           value={zoneName}
           onChange={(e) => {

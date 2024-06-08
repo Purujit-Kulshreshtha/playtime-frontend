@@ -1,14 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useModalProps } from "../context/ModalPropsProvider";
+import {
+  defaultModalProps,
+  useModalProps,
+} from "../context/ModalPropsProvider";
 
 const MultiPurposeModal = () => {
   const { modalProps, set } = useModalProps();
 
   const closeModal = () => {
-    set({
-      isOpen: false,
-      children: <></>,
-    });
+    set(defaultModalProps);
   };
   return (
     <AnimatePresence>
