@@ -20,7 +20,7 @@ export const Background = () => {
         background: {
           opacity: 0,
         },
-        fpsLimit: 60,
+        fpsLimit: 30,
         interactivity: {
           events: {
             onClick: {
@@ -45,10 +45,10 @@ export const Background = () => {
         },
         particles: {
           color: {
-            value: "#164e63",
+            value: "#14b8a6",
           },
           links: {
-            color: "#0891b2",
+            color: "#14b8a6",
             distance: 150,
             enable: true,
             opacity: 0.1,
@@ -61,7 +61,7 @@ export const Background = () => {
               default: "bounce",
             },
             random: false,
-            speed: 1,
+            speed: 0.8,
             straight: false,
           },
           number: {
@@ -72,7 +72,7 @@ export const Background = () => {
             value: 200,
           },
           opacity: {
-            value: 0.5,
+            value: 1,
           },
           shape: {
             type: "",
