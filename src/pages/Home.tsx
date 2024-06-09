@@ -15,6 +15,8 @@ const Home = () => {
       children: component,
     });
   };
+  const boxStyle =
+    "w-[130px] h-[130px] md:w-[240px] md:h-[240px] flex justify-center items-center text-[55px] md:text-[110px] rounded-3xl shadow-md shadow-[#121212] bg-gradient-to-br";
 
   return (
     <Container>
@@ -27,7 +29,7 @@ const Home = () => {
               onClick={() => handleSelectType(<JoinZoneForm />)}
               className="flex flex-col justify-center items-center gap-4 cursor-pointer hover:scale-110 transition-all"
             >
-              <div className="w-[180px] h-[180px] md:w-[240px] md:h-[240px] flex justify-center items-center text-[110px] rounded-3xl shadow-md shadow-[#121212] bg-gradient-to-br from-red-400 to-red-800">
+              <div className={`${boxStyle} from-red-400 to-red-800`}>
                 <VscGitPullRequestCreate />
               </div>
               <h1 className="text-xl ">Join Timezone</h1>
@@ -37,7 +39,7 @@ const Home = () => {
               onClick={() => handleSelectType(<CreateSongZoneForm />)}
               className="flex flex-col justify-center items-center gap-4 cursor-pointer hover:scale-110 transition-all"
             >
-              <div className="w-[180px] h-[180px] md:w-[240px] md:h-[240px] flex justify-center items-center text-[110px] rounded-3xl shadow-md shadow-[#121212] bg-gradient-to-br from-blue-400 to-blue-800">
+              <div className={`${boxStyle} from-blue-400 to-blue-800`}>
                 <PiMusicNotesPlusFill />
               </div>
               <h1 className="text-xl ">Create SongZone</h1>
@@ -47,7 +49,7 @@ const Home = () => {
               onClick={() => handleSelectType(<CreateWatchZoneForm />)}
               className="flex flex-col justify-center items-center gap-4 cursor-pointer hover:scale-110 transition-all"
             >
-              <div className="w-[180px] h-[180px] md:w-[240px] md:h-[240px] flex justify-center items-center text-[110px] rounded-3xl shadow-md shadow-[#121212] bg-gradient-to-br from-green-400 to-green-800">
+              <div className={`${boxStyle} from-green-400 to-green-800`}>
                 <TbScreenShare />
               </div>
               <h1 className="text-xl ">Create WatchZone</h1>

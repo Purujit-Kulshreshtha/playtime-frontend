@@ -25,7 +25,7 @@ const MultiPurposeModal = () => {
             animate={{ scale: 1, rotate: "0deg" }}
             exit={{ scale: 0, rotate: "0deg" }}
             onClick={(e) => e.stopPropagation()}
-            className=" bg-gradient-to-br from-cyan-900 to-cyan-700 text-white p-6 rounded-3xl w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
+            className=" bg-gradient-to-br from-teal-600 to-teal-900 text-white p-6 rounded-3xl w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
           >
             {modalProps.children}
           </motion.div>
