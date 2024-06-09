@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useUser } from "../context/UserProvider";
 import { useNavigate } from "react-router-dom";
 import { IMAGES } from "../contants";
+import { v4 } from "uuid";
 
 const Setup = (props: { isJoining?: boolean }) => {
   const user = useUser();
@@ -12,6 +13,7 @@ const Setup = (props: { isJoining?: boolean }) => {
     e.preventDefault();
     user.set({
       name: username,
+      id: v4(),
     });
     if (props.isJoining) return;
     navigate("/");

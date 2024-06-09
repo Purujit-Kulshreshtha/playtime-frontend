@@ -3,6 +3,7 @@ import { LOCAL_STORAGE_KEYS } from "../contants";
 
 export type User = {
   name: string;
+  id: string;
   avatar?: string;
   audioDevice?: string;
   videoDevice?: string;
