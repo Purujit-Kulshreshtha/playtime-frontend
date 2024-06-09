@@ -9,7 +9,6 @@ import {
 
 const JoinZoneForm = () => {
   const [zoneName, setZoneName] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { set } = useModalProps();
 
@@ -36,18 +35,7 @@ const JoinZoneForm = () => {
             placeholder="Zone Name *"
             className="bg-zinc-700 px-4 py-2 border-white border-[0.5px] rounded-2xl"
           />
-          <input
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            placeholder="Password"
-            className="bg-zinc-700 px-4 mt-2 py-2 border-white border-[0.5px] rounded-2xl"
-          />
-          <p className="text-xs text-center text-gray-400">
-            (leave empty if no password)
-          </p>
+          
         </div>
 
         <div className="flex flex-col gap-2">

@@ -16,7 +16,7 @@ const Home = () => {
     });
   };
   const boxStyle =
-    "w-[130px] h-[130px] md:w-[240px] md:h-[240px] flex justify-center items-center text-[55px] md:text-[110px] rounded-3xl shadow-md shadow-[#121212] bg-gradient-to-br";
+    "w-[130px] h-[130px] lg:w-[240px] lg:h-[240px] flex justify-center items-center text-[55px] lg:text-[110px] rounded-3xl shadow-md shadow-[#121212] bg-gradient-to-br";
 
   return (
     <Container>
