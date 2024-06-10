@@ -6,15 +6,23 @@ import {
   defaultModalProps,
   useModalProps,
 } from "../../context/ModalPropsProvider";
+import { useZone } from "../../context/ZoneProvider";
 
 const JoinZoneForm = () => {
   const [zoneName, setZoneName] = useState("");
   const navigate = useNavigate();
-  const { set } = useModalProps();
+  const { set: setModal } = useModalProps();
+  const { set } = useZone();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    set(defaultModalProps);
+    set({
+      name: zoneName,
+      password: "",
+      isCreate: false,
+    });
+
+    setModal(defaultModalProps);
     navigate(ROUTES.getTimezoneRoute(zoneName));
   };
 
@@ -35,7 +43,6 @@ const JoinZoneForm = () => {
             placeholder="Zone Name *"
             className="bg-zinc-700 px-4 py-2 border-white border-[0.5px] rounded-2xl"
           />
-          
         </div>
 
         <div className="flex flex-col gap-2">

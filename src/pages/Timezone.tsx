@@ -15,14 +15,6 @@ const Timezone = () => {
   const [status, setStatus] = useState(ConnectionStatus.IS_NOT_READY_TO_JOIN);
 
   useEffect(() => {
-    if (status === ConnectionStatus.JOINING) {
-      //emit join event here
-      console.log("Join event emited");
-      setTimeout(() => {
-        setStatus(ConnectionStatus.JOINED);
-      }, 100);
-    }
-
     return () => {};
   }, [status]);
 

@@ -5,7 +5,6 @@ import { TbScreenShare } from "react-icons/tb";
 import { useModalProps } from "../context/ModalPropsProvider";
 import JoinZoneForm from "../components/Forms/JoinZoneForm";
 import CreateSongZoneForm from "../components/Forms/CreateSongZoneForm";
-import CreateWatchZoneForm from "../components/Forms/CreateWatchZoneForm";
 
 const Home = () => {
   const { set } = useModalProps();
@@ -46,7 +45,11 @@ const Home = () => {
             </button>
 
             <button
-              onClick={() => handleSelectType(<CreateWatchZoneForm />)}
+              onClick={() =>
+                handleSelectType(
+                  <h1 className="text-center text-3xl">Coming Soon!</h1>
+                )
+              }
               className="flex flex-col justify-center items-center gap-4 cursor-pointer hover:scale-110 transition-all"
             >
               <div className={`${boxStyle} from-green-400 to-green-800`}>

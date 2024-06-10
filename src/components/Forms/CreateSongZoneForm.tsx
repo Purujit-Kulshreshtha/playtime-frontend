@@ -1,14 +1,37 @@
 import { useState } from "react";
 import { PiMusicNotesPlusFill } from "react-icons/pi";
+import { useZone } from "../../context/ZoneProvider";
+import {
+  defaultModalProps,
+  useModalProps,
+} from "../../context/ModalPropsProvider";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../contants";
 
 const CreateSongZoneForm = () => {
   const [zoneName, setZoneName] = useState("");
+  const { set: setModal } = useModalProps();
+  const navigate = useNavigate();
+  const { set } = useZone();
+
+  const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    set({
+      name: zoneName,
+      password: "",
+      isCreate: true,
+    });
+    setModal(defaultModalProps);
+    navigate(ROUTES.getTimezoneRoute(zoneName));
+  };
+
   return (
     <div className="flex flex-col justify-between items-center py-5">
       <h1 className="text-6xl font-extrabold flex flex-col  justify-center items-center gap-4 md:gap-8 text-center">
         <PiMusicNotesPlusFill />+ Song Zone
       </h1>
-      <form className="flex flex-col gap-6 mt-16 mb-8">
+      <form className="flex flex-col gap-6 mt-16 mb-8" onSubmit={handleCreate}>
         <div className="flex flex-col gap-2">
           <input
             value={zoneName}

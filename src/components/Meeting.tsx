@@ -1,14 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CameraStream from "./CameraStream";
 import Controlbar from "./Controlbar";
 import Container from "../elements/Container";
 import { FaMusic } from "react-icons/fa";
+import { useSocket } from "../context/SocketProvider";
+import { User } from "../context/UserProvider";
+import IncomingVideo from "./IncomingVideo";
+import { usePeer } from "../context/PeerProvider";
 
 const Meeting = () => {
   const [isMicOn, setIsMicOn] = useState(true);
   const [isVideoOn, setisVideoOn] = useState(true);
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
   const [addVideoUrl, setAddVideoUrl] = useState("");
+
+  const [videoStreams, setVideoStreams] = useState<any[]>([]);
+
+  const socket = useSocket();
+  const peer = usePeer();
 
   let webcamStream: MediaStream | null = null;
   const stopStream = () => {
@@ -52,6 +61,43 @@ const Meeting = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  peer.on("call", (call: any) => {
+    call.answer(webcamStream);
+
+    call.on("stream", (incomingStream: any) => {
+      addVideoStream(incomingStream);
+    });
+  });
+
+  const joinUser = (joineeData: User) => {
+    connectToNewUser(joineeData.id || "", webcamStream);
+  };
+
+  useEffect(() => {
+    socket.on("user-joined", joinUser);
+    return () => {
+      socket.off("user-joined", joinUser);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const addVideoStream = (stream: any) => {
+    // const newVideoStream = ;
+    // console.log(newVideoStream);
+    setVideoStreams([
+      ...videoStreams,
+      <IncomingVideo stream={stream} width="300px" />,
+    ]);
+  };
+
+  const connectToNewUser = (id: string, stream: any) => {
+    const call = peer.call(id, stream);
+
+    call.on("stream", (incomingStream: any) => {
+      addVideoStream(incomingStream);
+    });
+  };
+
   return (
     <div className="w-[calc(100vw-5px)] overflow-x-hidden min-h-screen bg-gradient-to-br from-gray-600 flex justify-center items-center flex-col-reverse md:flex-col gap-6 px-20 py-8 shadow-md shadow-black">
       <div
@@ -93,6 +139,7 @@ const Meeting = () => {
             width="500px"
             isVideoOn={isVideoOn}
           />
+          {videoStreams.length}
         </div>
       </Container>
       <div className="fixed bottom-0 backdrop-blur-3xl backdrop-brightness-[4] px-10 py-4 rounded-t-xl">
